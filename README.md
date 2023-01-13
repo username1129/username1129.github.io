@@ -1,5 +1,3 @@
 # username1129.github.io
 
-## Choose your language
-
-[English](index.html)
+没想到吧，这玩意也有网站。
