@@ -16,30 +16,94 @@
         #current_page {
             display: inline;
         }
+        input {
+          border: none;
+          outline: none;
+          background: #f8f9fa;
+          padding: 12px 15px;
+          border-radius: 8px;
+          font-size: 16px;
+        }
+        input:hover {
+          background: #f1f3f5;
+          border: 1px solid #adb5bd;
+        }
+        input:focus {
+          transition: box-shadow 0.3s ease;
+          box-shadow: 0 0 8px 2px rgba(93, 149, 242, 0.5);
+          -webkit-box-shadow: 0 0 8px 2px rgba(93,149,242,0.5);
+        }
+        .btn {
+          display: inline-block;
+          padding: 8px 12px;
+          font-size: 1rem;
+          font-weight: 600;
+          text-align: center;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          transform: translateY(0);
+          outline: none;
+        }
+        .btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+          transform: translateY(1px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .btn-ghost {
+          background: transparent;
+          border: 2px solid #404040;
+          color: #404040;
+        }
+
+        .btn-ghost:hover {
+          background: transparent;
+        }
+        .poem {
+          max-width: 800px;
+          width: 100%;
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+          padding: 40px;
+          margin-top: 30px;
+          margin: 0 auto;
+        }
     </style>
 </head>
     <body>
         <h1>诗云 Poem Cloud</h1>
-        <h2 id = "poem_title">诗云其一</h2>
-        <p id = "poem_content">
+        <div class = "poem">
+          <h2 id = "poem_title">诗云其一</h2>
+          <p id = "poem_content">
             㐀㐀㐀㐀㐀，<br>
             㐀㐀㐀㐀㐀。<br>
             㐀㐀㐀㐀㐀，<br>
             㐀㐀㐀㐀㐀。
-        </p>
-
-        <button type="button" onclick="PgUp()">
-            上一首
+          </p>
+        </div>
+        <br>
+        <button type="button" class="btn btn-ghost" onclick="PgUp()">
+          上一页
         </button>
         <p id = "current_page">第 1 页</p>
-        <button type="button" onclick="PgDn()">
-            下一首
+        <button type="button" class="btn btn-ghost" onclick="PgDn()">
+          下一页
         </button>
+        <br>
         <p>
           跳转至
           <input type="text" id="myInput" placeholder="输入一个正整数 (≤ 97156²⁰)">
           页
-          <button onclick="getInputValue()">飞起来！</button>
+          <button onclick="getInputValue()" class = "btn">飞起来</button>
         </p>
         <script src="chrlist.js"></script>
         <script src="iDontWannaNameIt.js"></script>
