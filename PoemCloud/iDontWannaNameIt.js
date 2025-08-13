@@ -63,3 +63,17 @@ function PgDn(){
   page_num += 1n;
   display();
 }
+function getInputValue(){
+  const inputValue = document.getElementById("myInput").value;
+  try {
+    var val = BigInt(inputValue);
+    if (1n <= val && val <= 97156n ** 20n) {
+      page_num = val;
+      display();
+    }
+    else
+      alert("请输入一个在 1 ~ 97156²⁰ 范围的正整数！");
+  } catch (err) {
+    alert("请输入一个在 1 ~ 97156²⁰ 范围的正整数！")
+  }
+}
