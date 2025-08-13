@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>诗云</title>
+    <style type="text/css">
+        body {
+          font-family: consolas;
+          color: black;
+          text-align: center;
+        }
+        #poem_content {
+          font-family: 楷体;
+          font-size: 27px;
+        }
+        #current_page {
+            display: inline;
+        }
+    </style>
+</head>
+    <body>
+        <h1>诗云 Poem Cloud</h1>
+        <h2 id = "poem_title">诗云其一</h2>
+        <p id = "poem_content">
+            㐀㐀㐀㐀㐀，<br>
+            㐀㐀㐀㐀㐀。<br>
+            㐀㐀㐀㐀㐀，<br>
+            㐀㐀㐀㐀㐀。
+        </p>
+
+        <button type="button" onclick="PgUp()">
+            上一首
+        </button>
+        <p id = "current_page">第 1 页</p>
+        <button type="button" onclick="PgDn()">
+            下一首
+        </button>
+        <script src="chrlist.js"></script>
+        <script src="iDontWannaNameIt.js"></script>
+    </body>
+</html>
