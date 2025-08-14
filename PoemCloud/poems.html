@@ -1,111 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>诗云</title>
-    <style type="text/css">
-        body {
-          font-family: consolas;
-          color: black;
-          text-align: center;
-        }
-        #poem_content {
-          font-family: 楷体;
-          font-size: 27px;
-        }
-        #current_page {
-            display: inline;
-        }
-        input {
-          border: none;
-          outline: none;
-          background: #f8f9fa;
-          padding: 12px 15px;
-          border-radius: 8px;
-          font-size: 16px;
-        }
-        input:hover {
-          background: #f1f3f5;
-          border: 1px solid #adb5bd;
-        }
-        input:focus {
-          transition: box-shadow 0.3s ease;
-          box-shadow: 0 0 8px 2px rgba(93, 149, 242, 0.5);
-          -webkit-box-shadow: 0 0 8px 2px rgba(93,149,242,0.5);
-        }
-        .btn {
-          display: inline-block;
-          padding: 8px 12px;
-          font-size: 1rem;
-          font-weight: 600;
-          text-align: center;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          transform: translateY(0);
-          outline: none;
-        }
-        .btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
-        }
+  <meta charset="UTF-8">
+  <title>诗云</title>
+  <style type="text/css">
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4895ef;
+      --dark: #2b2d42;
+      --light: #f8f9fa;
+      --gray: #adb5bd;
+      --success: #4cc9f0;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 5%;
+    }
 
-        .btn:active {
-          transform: translateY(1px);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .btn-ghost {
-          background: transparent;
-          border: 2px solid #404040;
-          color: #404040;
-        }
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
 
-        .btn-ghost:hover {
-          background: transparent;
-        }
-        .poem {
-          max-width: 800px;
-          width: 100%;
-          background: white;
-          border-radius: 20px;
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-          padding: 40px;
-          margin-top: 30px;
-          margin: 0 auto;
-        }
-    </style>
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+        align-items: center;
+    }
+
+    .logo i {
+        margin-right: 10px;
+        color: var(--accent);
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+    }
+
+    .nav-links li {
+        margin-left: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+        padding: 5px 0;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+    body {
+      font-family: consolas;
+      color: black;
+      text-align: center;
+    }
+    #poem_content {
+      font-family: 楷体;
+      font-size: 27px;
+    }
+    #current_page {
+        display: inline;
+    }
+    input {
+      border: none;
+      outline: none;
+      background: #f8f9fa;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    input:hover {
+      background: #f1f3f5;
+      border: 1px solid #adb5bd;
+    }
+    input:focus {
+      transition: box-shadow 0.3s ease;
+      box-shadow: 0 0 8px 2px rgba(93, 149, 242, 0.5);
+      -webkit-box-shadow: 0 0 8px 2px rgba(93,149,242,0.5);
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(0);
+      outline: none;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 2px solid #404040;
+      color: #404040;
+    }
+
+    .btn-ghost:hover {
+      background: transparent;
+    }
+    .poem {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin-top: 30px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
-    <body>
-        <h1>诗云 Poem Cloud</h1>
-        <div class = "poem">
-          <h2 id = "poem_title">诗云其一</h2>
-          <p id = "poem_content">
-            㐀㐀㐀㐀㐀，<br>
-            㐀㐀㐀㐀㐀。<br>
-            㐀㐀㐀㐀㐀，<br>
-            㐀㐀㐀㐀㐀。
-          </p>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <span>诗云 Poem Cloud</span>
         </div>
-        <br>
-        <button type="button" class="btn btn-ghost" onclick="PgUp()">
-          上一页
-        </button>
-        <p id = "current_page">第 1 页</p>
-        <button type="button" class="btn btn-ghost" onclick="PgDn()">
-          下一页
-        </button>
-        <br>
-        <p>
-          跳转至
-          <input type="text" id="myInput" placeholder="输入一个正整数 (≤ 97156²⁰)">
-          页
-          <button onclick="getInputValue()" class = "btn">飞起来</button>
-        </p>
-        <script src="chrlist.js"></script>
-        <script src="iDontWannaNameIt.js"></script>
-    </body>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+          <li><a href="search.html"><i class="fas fa-tags"></i> 搜索</a></li>
+          <li><a href="about.html"><i class="fas fa-user"></i> 关于</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>诗云 Poem Cloud</h1>
+    <div class = "poem">
+      <h2 id = "poem_title">诗云其一</h2>
+      <p id = "poem_content">
+        㐀㐀㐀㐀㐀，<br>
+        㐀㐀㐀㐀㐀。<br>
+        㐀㐀㐀㐀㐀，<br>
+        㐀㐀㐀㐀㐀。
+      </p>
+    </div>
+    <br>
+    <button type="button" class="btn btn-ghost" onclick="PgUp()">
+      上一页
+    </button>
+    <p id = "current_page">第 1 页</p>
+    <button type="button" class="btn btn-ghost" onclick="PgDn()">
+      下一页
+    </button>
+    <br>
+    <p>
+      跳转至
+      <input type="text" id="myInput" placeholder="输入一个正整数 (≤ 97156²⁰)">
+      页
+      <button onclick="getInputValue()" class = "btn">飞起来</button>
+    </p>
+    <script src="chrlist.js"></script>
+    <script src="iDontWannaNameIt.js"></script>
+  </body>
 </html>
